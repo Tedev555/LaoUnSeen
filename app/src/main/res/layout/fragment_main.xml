@@ -34,6 +34,9 @@
             android:layout_height="wrap_content" />
         <!--Register-->
         <TextView
+            android:id="@+id/register_text_view"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
             android:layout_gravity="center_horizontal"
             android:text="@string/register_text"
             android:layout_width="wrap_content"
