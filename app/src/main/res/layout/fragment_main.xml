@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <LinearLayout
+        android:background="@drawable/login_space_bg"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--Logo-->
-        <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
-        <!--User-->
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <!--Username-->
         <EditText
-            android:hint="User"
+            android:hint="@string/username_hint_text"
+            android:background="@drawable/email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <!--Password-->
         <EditText
-            android:hint="Password"
+            android:hint="@string/password_hint_text"
+            android:background="@drawable/password_edit_text"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <!--Login-->
         <Button
-            android:text="Login"
+            android:text="@string/login_button_text"
+            android:textColor="@android:color/white"
+            android:background="@drawable/login_button_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <!--Register-->
         <TextView
             android:layout_gravity="center_horizontal"
-            android:text="Register"
+            android:text="@string/register_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
