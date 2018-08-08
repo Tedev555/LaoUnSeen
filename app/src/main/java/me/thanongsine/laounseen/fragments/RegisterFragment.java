@@ -18,18 +18,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.Objects;
-
-import me.thanongsine.laounseen.MainActivity;
+import me.thanongsine.laounseen.Activities.MainActivity;
 import me.thanongsine.laounseen.R;
+import me.thanongsine.laounseen.utility.MyAlert;
 
 public class RegisterFragment extends Fragment {
     private Toolbar toolbar;
     private Uri uri;
     private ImageView imageView;
+    private boolean aBoolean = true;
 
     @Nullable
     @Override
@@ -59,10 +60,14 @@ public class RegisterFragment extends Fragment {
         getActivity();
         if (resultCode == Activity.RESULT_OK) {
 
+            uri = data.getData();
+            aBoolean = false;
+
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(Objects.requireNonNull(getActivity()).getContentResolver().openInputStream(uri));
                 Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, 400, 300, true);
                 imageView.setImageBitmap(bitmap1);
+
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -101,10 +106,34 @@ public class RegisterFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.upload_item) {
-            //
+            uploadProcess();
         }
 
         return true;
+    }
+
+    private void uploadProcess() {
+        EditText nameEditText = getView().findViewById(R.id.edt_name);
+        EditText emailEditText = getView().findViewById(R.id.edt_email);
+        EditText passwordEditText = getView().findViewById(R.id.edt_password);
+
+        //Get Value From EditText
+        String nameString = nameEditText.getText().toString().trim();
+        String emailString = emailEditText.getText().toString().trim();
+        String passwordString = passwordEditText.getText().toString().trim();
+
+        MyAlert myAlert = new MyAlert(getActivity());
+        //Check Choose photo
+        if (aBoolean) {
+            //None choose photo
+            myAlert.normalDialog("Non Choose Photo",
+                    "Please Choose Photo");
+        } else if (nameString.isEmpty() || passwordString.isEmpty() || passwordString.isEmpty()) {
+            myAlert.normalDialog("Have Space",
+                    "Please Fill All Every Blank");
+        } else {
+            //No Space
+        }
     }
 
 }
